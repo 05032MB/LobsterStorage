@@ -125,34 +125,7 @@ echo "<div class=\"alert error\">
  <script src="alertutil.js" >
 
  
-</script>  <!--<img src="icons8-folder-26.png" id="imageid">XSS cheat sheet dont try it at home-->
-<!--<script> alert(1); </script>-->
-<!--<img src='1' onerror=document.getElementById('imageid').src='http://www.wykop.pl/cdn/c3201142/comment_vUbTk3pGxQIidFy5em55HinkGRW0rGt8.jpg'>-->
-<!--<img src='1' onerror="document.body.style.backgroundImage=url('http:\\www.wykop.pl\cdn\c3201142\comment_vUbTk3pGxQIidFy5em55HinkGRW0rGt8.jpg')">-->
- 
-<!--<img src='1' onerror='alert(String.fromCharCode(65, 78, 84,79,78,73,32,68,65,76,32,83,73,69,32,90,72,65,67,75,79,87,65,67,32,80,90,68,82,32,72,65,67 ,75, 69, 82, 32, 66, 79, 78, 90, 79, 32, 50, 48, 49, 56, 65, 68))'>;-->
-
-<!--<div class="defContainer">
-
-
-    <fieldset>
-        <legend>Add a new file to the storage</legend>
-        <form method="post" action="files.php" enctype="multipart/form-data">
-        <!--<input type="hidden" name="MAX_FILE_SIZE" value="100000" />
-        <p>
-		<label class="uploadFile">
-        <input type="file" name="file" />
-		<span>Select file</span>
-		</label>
-		</p>	
-		<input type="checkbox" name="public" >Is public upload?</input>
-        <p><input type="submit" name="submit" value="Start upload" /></p>
-		
-
-        </form>   
-    </fieldset>
-</div>-->
-
+</script>  
 <div class ="popupLarge" id="download-frame">
 <div class="popupLarge-content">
 <div class="close" onclick="toggleDownloadDialog()">&times;</div>
@@ -181,6 +154,7 @@ echo "<div class=\"alert error\">
 <button class="delete" onclick="executeOnSelected('delete', ajaxResponseDump)">Delete</button>
 <button class="download" onclick="executeOnSelected('prepare-download', downloadWrapper, false)">Download</button>
 <button class="upload" onclick="toggleDownloadDialog()">Upload</button>
+<button class="upload" onclick="executeOnSelected('pack-files-zip', downloadWrapper, false)" >Zip</button>
 <div id="fileList"></div>
 <?php
 	
