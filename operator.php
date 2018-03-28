@@ -18,7 +18,7 @@ switch($action)
 		$db = mysql_select_db(Settings::databaseName, $connection);
 		
 		if($query = mysql_query("DELETE FROM files WHERE discName='$param' AND userId='$user_check'")){
-		unlink( "up/".$param);
+		unlink( Settings::uploadDirectory.$param);
 		}
 		
 		mysql_close($connection);
@@ -99,6 +99,10 @@ switch($action)
 		
 		break;
 	}
+	case 'pack-files-zip':
+	{
+		
+	}
 	case 'prepare-download':
 	{
 		$connection = mysql_connect(Settings::databaseAddr, Settings::databaseUser, Settings::databasePassword);
@@ -107,9 +111,9 @@ switch($action)
 		
 		if($result = mysql_fetch_array($query)){
 			$folder = uniqid();
-			mkdir("up/".$folder);
-			copy("up/".$result['discName'], "up/".$folder."/".$result['name']);
-			echo "up/".$folder."/".$result['name'];
+			mkdir(Settings::downloadDirectory.$folder);
+			copy(Settings::uploadDirectory.$result['discName'], Settings::downloadDirectory.$folder."/".$result['name']);
+			echo Settings::downloadDirectory.$folder."/".$result['name'];
 		}
 		
 		mysql_close($connection);
