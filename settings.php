@@ -2,7 +2,7 @@
 
 class Settings{
 	 const databaseAddr = 'localhost';
-	 const databaseName = 'users_host';
+	 const databaseName = 'LobsterStorage';
 	 const databaseUser = 'root';
 	 const databasePassword = 'root';
 	

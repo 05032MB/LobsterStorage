@@ -40,7 +40,7 @@ a:hover
 	
 	background-position: 0px 0px; 
 	background-size: 35%;
-	background-image: url("icons8-user-24.png");
+	background-image: url("media/icon/icons8-user-24.png");
 	background-repeat: no-repeat;
 	
 	font-size: small;
@@ -59,7 +59,7 @@ a.logout{
 	
 	background-position: 1px 1px; 
 	background-size: 20%;
-	background-image: url("icons8-key-filled-50.png");
+	background-image: url("media/icon/icons8-key-filled-50.png");
 	background-repeat: no-repeat;
 	
 	padding-left: 20px;
@@ -141,7 +141,7 @@ button.delete:hover{
 button.refresh{
 	background-color: blue;
 	background-size: 15%;
-	background-image: url("icons8-synchronize-26.png");
+	background-image: url("media/icon/icons8-synchronize-26.png");
 	background-repeat: no-repeat;
 	background-position: 3px 5px;
 
@@ -199,7 +199,7 @@ input[type=text]:focus, input[type=password]:focus{
 	
 	background-position: 8px 5px; 
 	background-size: 20%;
-	background-image: url("icons8-folder-26.png");
+	background-image: url("media/icon/icons8-folder-26.png");
 	background-repeat: no-repeat;
 	
 	padding-left:40px;
