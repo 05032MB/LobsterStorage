@@ -1,0 +1,279 @@
+﻿.menuArea{
+
+position: fixed;
+padding: 10px 10px 10px 10px;
+z-index:10;
+background-color: black;
+color:white;
+font-family: sans-serif;
+box-sizing: border-box;
+border: none;
+display: block;
+top:0px;
+width: 100%;
+left:0px;
+
+}
+.right{
+text-align: right;
+border: none;
+padding: 0 0 0 0;
+float:right;
+}
+
+a{
+	text-decoration: none;
+	color: inherit;
+	font-size: inherit;
+	
+	transition: 0.3s ease-out;
+}
+
+a:hover
+{
+	color: blue;
+	text-decoration: none;
+}
+
+.userIco{
+	padding-left: 20px;
+	
+	background-position: 0px 0px; 
+	background-size: 35%;
+	background-image: url("icons8-user-24.png");
+	background-repeat: no-repeat;
+	
+	font-size: small;
+	
+
+}
+
+
+a.logout{
+	text-align: right;
+	text-decoration:none;
+	transition: 0.3s ease-out;
+	font-size: small;
+	color: inherit;
+	#position: absolute;
+	
+	background-position: 1px 1px; 
+	background-size: 20%;
+	background-image: url("icons8-key-filled-50.png");
+	background-repeat: no-repeat;
+	
+	padding-left: 20px;
+}
+a.logout:hover
+{
+	color: red;
+	text-decoration: underline;
+}
+
+
+.login{
+	background-color: white;
+	font-family: sans-serif;
+	border-radius: 4px;
+	width: 70%;
+	border: 3px solid grey;
+	margin: auto;
+	margin-top: 20px;
+	
+	padding: 40px 40px 40px;
+	overflow: visible;
+	
+}
+
+.defContainer{
+	background-color: white;
+	font-family: sans-serif;
+	border-radius: 4px;
+	width: 75%;
+	border: 3px solid grey;
+	margin: auto;
+	margin-top: 20px;
+	
+	padding: 40px 40px 40px;
+	overflow: auto;
+	
+}
+
+body{
+
+background-color: #adad85;
+font-family: sans-serif;
+
+}
+
+.notifArea{
+
+margin:auto;
+width: 70%;
+padding-top:30px;
+
+}
+
+button, input[type=button], input[type=submit]{
+
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+
+	padding: 7px 18px 7px 18px;
+	border-radius: 5px;
+	border: none;
+	box-shadow: 2px 3px gray;
+	background-color: #40bf40;
+	color: white;
+}
+
+button.delete{
+
+	background-color:red;
+}
+button.delete:hover{
+	box-shadow:  2px 2px 2px 2px gray;
+	border-top: 2px gray;
+
+}
+button.refresh{
+	background-color: blue;
+	background-size: 15%;
+	background-image: url("icons8-synchronize-26.png");
+	background-repeat: no-repeat;
+	background-position: 3px 5px;
+
+	padding-left: 30px;
+
+}
+button.refresh:hover{
+	box-shadow:  2px 2px 2px 2px gray;
+	border-top: 2px gray;
+}
+button:hover, input[type=button]:hover, input[type=submit]:hover{
+	box-shadow:  2px 2px 2px 2px #00802b;
+	cursor: pointer;
+	
+	border-top: 2px #00802b;
+}
+input[type=text], input[type=password] {
+
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  
+    width: auto;
+    padding: 10px 17px;
+	border: 1px solid grey;
+    margin: 8px 0;
+    box-sizing: border-box;
+	box-shadow: inset 0 1px 3px #ddd;
+	box-sizing: border-box;
+	#padding: 20px 20px 12px 12px;
+}
+
+input[type=text]:focus, input[type=password]:focus{
+    background-color: #e0e0d1;
+	box-shadow:  2px 2px 2px 2px #b3cccc;
+}
+
+.uploadFile {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  
+   -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+
+	padding: 7px 18px 7px 18px;
+	border-radius: 5px;
+	border: none;
+	box-shadow: 2px 3px gray;
+	background-color: #40bf40;
+	color: white;
+	
+	background-position: 8px 5px; 
+	background-size: 20%;
+	background-image: url("icons8-folder-26.png");
+	background-repeat: no-repeat;
+	
+	padding-left:40px;
+  
+}
+
+.uploadFile:hover
+{
+	box-shadow:  2px 2px 2px 2px #00802b;
+	cursor: pointer;
+	
+	border-top: 2px #00802b;
+}
+
+.uploadFile input[type=file] {
+  position: fixed;
+  top: -100000px;
+}
+table#fileList{
+	border: 1px solid gray;
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 8px;
+}
+#fileList th{
+	border-bottom: 3px solid gray;
+
+}
+#fileList td{
+	padding: 8px;
+}
+#fileList tr:hover{
+	background-color: lightgray;
+}
+.popupLarge{
+	overflow: visible;
+	z-index: 1;
+	position: fixed;
+	display: none;
+	top: 0;
+	left: 0;
+	padding-top: 100px;
+	width: 100%;
+	height: 100%;
+	margin: 5px auto;
+	overflow:auto;
+	background-color: rgba(0,0,0,0.4);
+}
+.popupLarge-content{
+	padding: 20px;
+	border: 1px solid gray;
+	display: inherit;	
+	background-color: white;
+	width: 60%;
+	margin: auto;
+	#margin-left:20px;
+}
+.popupLarge-content > .close{
+	color: #aaa;
+	float: right;
+	font-size: xx-large;
+	margin-top: -15px;
+	margin-right: -10px;
+
+}
+.popupLarge-content > .close:hover{
+	color: black;
+	cursor: pointer;
+}
+
+@supports(backdrop-filter: none) or (-webkit-backdrop-filter: none)
+{
+	.bckgPopupContainer{
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	}
+}
