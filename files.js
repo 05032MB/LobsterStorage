@@ -9,34 +9,36 @@ function fileListUpdate()
 {
 	var from = document.getElementById('from').value;
 	var to = document.getElementById('lim').value;
-	//console.log(from);
-	//console.log(to);
 	if( from !='' && to !='' && parseInt(from,10) <= parseInt(to,10)){
-		//console.log('a');
 		ajaxLoad('operator.php', "action=fetch-files&param="+parseInt(from,10)+"|"+parseInt(to,10), buildFileTable);
 	}
+}
+function zipWrapper(zipId)
+{
+	executeOnSelected('pack-files-zip', nullFunc, false, "|"+zipId);
 	
-	
+	var warframe = document.getElementById('downloader');	//dirty
+	warframe.src ="downloader.php?fileLoc="+"download/"+zipId+"/"+zipId+".zip";
 }
 function toggleDownloadDialog()
 {
 	var downloadFrame = document.getElementById('download-frame');
-	//console.log(downloadFrame.style.display);
 	if(downloadFrame.style.display == 'none' || downloadFrame.style.display == '' || downloadFrame.style.display == 'undefined' )downloadFrame.style.display = 'block';
 	else downloadFrame.style.display = 'none';
 }
-function executeOnSelected(action, callback, reloadNeeded)
+function executeOnSelected(action, callback, reloadNeeded, additional)
 {
 	if(reloadNeeded === undefined)reloadNeeded = true;
+	if(additional === undefined)additional = '';
 	var checkedValue = null; 
 	var inputElements = document.getElementsByClassName('checkBoxFileList');
 	for(var i=0; inputElements[i]; ++i){
       if(inputElements[i].checked){
           checkedValue = inputElements[i].id;
-		  ajaxLoadSync('operator.php', "action="+action+"&param="+checkedValue, callback);
+		  ajaxLoadSync('operator.php', "action="+action+"&param="+checkedValue+additional, callback);	//temporary needs to be fixed
       }
 	}
-	if(reloadNeeded)/*ajaxLoad('operator.php', 'action=fetch-files&param=NULL', buildFileTable);*/fileListUpdate();
+	if(reloadNeeded)fileListUpdate();
 }
 
 function downloadWrapper(xhttp)
@@ -45,9 +47,51 @@ function downloadWrapper(xhttp)
 	var warframe = document.getElementById('downloader');
 	warframe.src ="downloader.php?fileLoc="+xhttp.responseText;
 	//console.log(warframe.src);
+	
+	
+	/*var a = document.createElement('a');
+	a.style = "display: none;";
+	a.href = "downloader.php?fileLoc="+xhttp.responseText;
+	document.body.appendChild(a);
+	a.click();*/
 
 }
-
+function incLeft()
+{
+	var result1 = document.getElementById('from').value;
+	var result2 = document.getElementById('lim').value;
+	
+	var moveSize = parseInt(document.getElementById('moveSize').value,10);
+	
+	var final1 = parseInt(result1, 10)-moveSize;
+	var final2 = parseInt(result2, 10)-moveSize;
+	if(final1<1)final1= 1;
+	if(final2<1)final2=1;
+	
+	document.getElementById('from').value = final1;
+	document.getElementById('lim').value = final2;
+	
+	fileListUpdate();
+	
+}
+function incRight()
+{
+	var result1 = document.getElementById('from').value;
+	var result2 = document.getElementById('lim').value;
+	
+	var moveSize = parseInt(document.getElementById('moveSize').value,10);
+	
+	var final1 = parseInt(result1, 10)+moveSize;
+	var final2 = parseInt(result2, 10)+moveSize;
+	if(final1<1)final1= 1;
+	if(final2<1)final2=1;
+	
+	document.getElementById('from').value = final1;
+	document.getElementById('lim').value = final2;
+	//console.log(result1);
+	
+	fileListUpdate();
+}
 /*function downloadFire(xhttp)
 {
 	console.log(xhttp);

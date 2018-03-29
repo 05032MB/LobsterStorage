@@ -55,8 +55,8 @@ switch($action)
 			//$downLink = '/up/';
 			$downLink = $result['discName'];
 		
-			$toSend = "action=prepare-download&param=";
-			$toSend .= $result["discName"];
+			//$toSend = "action=prepare-download&param=";
+			//$toSend .= $result["discName"];
 			
 			$table[$i] = array();
 			$table[$i]["name"] = $fn;
@@ -79,7 +79,30 @@ switch($action)
 	}
 	case 'pack-files-zip':
 	{
+		$split = explode("|", $param);
+		$file = $split[0];
+		$archive = $split[1];
 		
+		$connection = mysql_connect(Settings::databaseAddr, Settings::databaseUser, Settings::databasePassword);
+		$db = mysql_select_db(Settings::databaseName, $connection);
+		$query = mysql_query("SELECT name, discName FROM files WHERE userId='$user_check' AND discName ='$file'");
+		
+		if($result = mysql_fetch_array($query)){
+
+			//echo Settings::downloadDirectory.$archive;
+			@mkdir(Settings::downloadDirectory.$archive);
+		
+			$zip = new ZipArchive();
+
+			if ($zip->open(Settings::downloadDirectory.$archive."\\".$archive.".zip", ZipArchive::CREATE)===TRUE)
+			{
+				$zip->addFile(Settings::uploadDirectory.$result['discName'], $result['name']);
+				
+				$zip->close();
+			}
+		}
+		
+		mysql_close($connection);
 	}
 	case 'prepare-download':
 	{

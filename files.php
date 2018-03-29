@@ -46,7 +46,7 @@ $size_limit = 500000;
 if(isset($_FILES['file']))
 {
 $target_path = "up/";
-$discName = rand() . time();
+$discName = /*rand() . time();*/ uniqid("f", true);
 $target_file = $target_path . $discName;
 
 if(file_exists($target_file)){
@@ -154,9 +154,12 @@ echo "<div class=\"alert error\">
 <button class="delete" onclick="deleteWrapper()">Delete</button>
 <button class="download" onclick="executeOnSelected('prepare-download', downloadWrapper, false)">Download</button>
 <button class="upload" onclick="toggleDownloadDialog()">Upload</button>
-<button class="upload" onclick="executeOnSelected('pack-files-zip', downloadWrapper, false)" >Zip</button>
-<div id="fileList"></div>
+<button class="zip" onclick="zipWrapper('<?php echo uniqid('zip') ?>')" id="zip">Zip</button>
+<div id="nav">
 From:<input type="text" name="from" value="1" onkeyup="fileListUpdate()" id="from" /> To: <input type="text" onkeyup="fileListUpdate()" name="lim" value="10" id="lim" /> 
+<button class="lor" id="moveLeft" onclick="incLeft()"> &lt </button><button id="moveRight" onclick="incRight()" class="lor"> &gt </button><input type="text" class="smallInput" id="moveSize" value="10" />
+</div>
+<div id="fileList"></div>
 
 <iframe src="downloader.php" id="downloader" style="display:none"></iframe>
 

@@ -126,7 +126,22 @@ button, input[type=button], input[type=submit]{
 	background-color: #40bf40;
 	color: white;
 }
+button.lor{
 
+border-radius: 0;
+padding: 3px 7px 3px 7px;
+box-shadow: none;
+margin-left: 3px;
+
+}
+button.lor:hover{
+	#border-top: 1px #00802b;
+	#box-shadow:  1px 1px 1px 1px #00802b;
+	border-top: none;
+	box-shadow: none;
+	color:white;
+	background-color: black;
+}
 button.delete{
 
 	background-color:red;
@@ -156,10 +171,11 @@ button:hover, input[type=button]:hover, input[type=submit]:hover{
 	
 	border-top: 2px #00802b;
 }
-input[type=text]#lim, input[type=text]#from
+input[type=text]#lim, input[type=text]#from, input[type=text].smallInput
 {
 	padding: 4px 4px;
 	width: 27px;
+	margin-left: 3px;
 }
 input[type=text], input[type=password] {
 
