@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8" />
 <title>FILES</title>
-<link rel="stylesheet" type="text/css" href="main.css" />
+<link rel="stylesheet" type="text/css" href="media/style/main.css" />
 <!--<link rel="stylesheet" type="text/css" href="main.css" />-->
-<link rel="stylesheet" type="text/css" href="alerts.css">
+<link rel="stylesheet" type="text/css" href="media/style/alerts.css">
 </head>
-<body onload="ajaxLoad('operator.php', 'action=fetch-files&param=NULL', buildFileTable)">
+<body onload="fileListUpdate()">
 <?php
 require('session.php');
 include('fileUtil.php');
@@ -150,16 +150,13 @@ echo "<div class=\"alert error\">
 </div>
 
 <div class="defContainer" id="myFileList">
-<button class="refresh" onclick="ajaxLoad('operator.php', 'action=fetch-files&param=NULL', buildFileTable)">Refresh File List</button>
-<button class="delete" onclick="executeOnSelected('delete', ajaxResponseDump)">Delete</button>
+<button class="refresh" onclick="fileListUpdate()">Refresh File List</button>
+<button class="delete" onclick="deleteWrapper()">Delete</button>
 <button class="download" onclick="executeOnSelected('prepare-download', downloadWrapper, false)">Download</button>
 <button class="upload" onclick="toggleDownloadDialog()">Upload</button>
 <button class="upload" onclick="executeOnSelected('pack-files-zip', downloadWrapper, false)" >Zip</button>
 <div id="fileList"></div>
-<?php
-	
-
-?>
+From:<input type="text" name="from" value="1" onkeyup="fileListUpdate()" id="from" /> To: <input type="text" onkeyup="fileListUpdate()" name="lim" value="10" id="lim" /> 
 
 <iframe src="downloader.php" id="downloader" style="display:none"></iframe>
 

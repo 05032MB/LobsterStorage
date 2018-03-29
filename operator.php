@@ -27,44 +27,22 @@ switch($action)
 		echo "$param"."$query";
 		break;
 	}
-	case 'get-list-obsolete':
-	{
-		$connection = mysql_connect(Settings::databaseAddr, Settings::databaseUser, Settings::databasePassword);
-	$db = mysql_select_db(Settings::databaseName, $connection);
-	
-	$query = mysql_query("SELECT name,type,discName,isPublic FROM files WHERE userId='$user_check'");
-	
-	while($result = mysql_fetch_array($query)) { 
-	
-	echo '<tr>';
-	
-		$fn = $result['name']; 
-		$ext = $result['type'];
-		$av = $result['isPublic'];
-		
-		//$downLink = '/up/';
-		$downLink = $result['discName'];
-		
-		$toSend = "action=delete&param=";
-		$toSend .= $result["discName"];
-		
-		echo '<td>'.$fn. '</td>'; 
-		echo '<td>'.$ext. '</td>'; 
-		echo '<td>'.$av. '</td>'; 
-		echo '<td>'.$downLink. '</td>'; 
-		echo '<td>'."<button class='delete' id='del' onclick=\"ajaxLoad('operator.php', '$toSend' ,ajaxResponseDump)\">Skasuj</button></td>"; 
-	
-		echo '</tr>';
-	}
-		mysql_close($connection);
-	}
 
 	case 'fetch-files':
 	{
 		header("Content-type: application/json");
+		
+		$split = explode("|", $param);
+		$offset = intval($split[0]);
+		$limit = intval($split[1]) - $offset+1;
+		$offset--;
+		
+		//echo $offset.$limit;
+		
 		$connection = mysql_connect(Settings::databaseAddr, Settings::databaseUser, Settings::databasePassword);
 		$db = mysql_select_db(Settings::databaseName, $connection);
-		$query = mysql_query("SELECT name,type,discName,isPublic FROM files WHERE userId='$user_check'");
+		if($limit>0 && $offset>=0)$query = mysql_query("SELECT name,type,discName,isPublic FROM files WHERE userId='$user_check' LIMIT $limit OFFSET $offset");
+		else $query = mysql_query("SELECT name,type,discName,isPublic FROM files WHERE userId='$user_check'");
 		
 		$table = array();
 		$i = 0;

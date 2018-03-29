@@ -1,4 +1,24 @@
-﻿function toggleDownloadDialog()
+﻿function deleteWrapper()
+{
+	if(window.confirm("Are you sure?"))executeOnSelected('delete', nullFunc(), true);
+}
+function nullFunc()
+{
+}
+function fileListUpdate()
+{
+	var from = document.getElementById('from').value;
+	var to = document.getElementById('lim').value;
+	//console.log(from);
+	//console.log(to);
+	if( from !='' && to !='' && parseInt(from,10) <= parseInt(to,10)){
+		//console.log('a');
+		ajaxLoad('operator.php', "action=fetch-files&param="+parseInt(from,10)+"|"+parseInt(to,10), buildFileTable);
+	}
+	
+	
+}
+function toggleDownloadDialog()
 {
 	var downloadFrame = document.getElementById('download-frame');
 	//console.log(downloadFrame.style.display);
@@ -16,7 +36,7 @@ function executeOnSelected(action, callback, reloadNeeded)
 		  ajaxLoadSync('operator.php', "action="+action+"&param="+checkedValue, callback);
       }
 	}
-	if(reloadNeeded)ajaxLoad('operator.php', 'action=fetch-files&param=NULL', buildFileTable);
+	if(reloadNeeded)/*ajaxLoad('operator.php', 'action=fetch-files&param=NULL', buildFileTable);*/fileListUpdate();
 }
 
 function downloadWrapper(xhttp)
@@ -24,10 +44,7 @@ function downloadWrapper(xhttp)
 	//console.log(xhttp.responseText);
 	var warframe = document.getElementById('downloader');
 	warframe.src ="downloader.php?fileLoc="+xhttp.responseText;
-	//document.getElementById('downloader').contentWindow.location.reload();
-	//document.getElementById('downloader').contentDocument.defaultView.location.reload();
-	console.log(warframe.src);
-	//setTimeout(function(){},50000);
+	//console.log(warframe.src);
 
 }
 

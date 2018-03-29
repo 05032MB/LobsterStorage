@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8" />
 <title>LOGOUT</title>
-<link rel="stylesheet" type="text/css" href="main.css">
-<link rel="stylesheet" type="text/css" href="main.css">
-<link rel="stylesheet" type="text/css" href="alerts.css">
+<link rel="stylesheet" type="text/css" href="media/style/main.css">
+<link rel="stylesheet" type="text/css" href="media/style/main.css">
+<link rel="stylesheet" type="text/css" href="media/style/alerts.css">
 
 </head>
 

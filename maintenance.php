@@ -17,7 +17,7 @@ if(isset($_REQUEST['action']) && isset($_REQUEST['param']))
 			
 				if(!$item ->isDot() && $item->isDir())
 				{
-				echo '<b>Traversing: '.$item->getPathname()."\n<br></b>";
+					echo '<b>Traversing: '.$item->getPathname()."\n<br></b>";
 					if(time() - filectime($item ->getPathname()) > $param){
 					//echo filectime($item ->getPathname());
 						array_push($unlink_list, $item->getPathname());
