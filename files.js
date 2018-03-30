@@ -119,20 +119,28 @@ function buildFileTable(data)
 	data  = data.responseText;
 	//console.log(JSON.stringify(data));
 	data = JSON.parse(data);
-	var Table="<table id=\"fileList\" class=\"fileList\"><tr><th></th><th>Nazwa pliku</th><th>Rozszerzenie pliku</th><th>Udostępniony publicznie?</th><th>Link do pobrania</th><th></th></tr>";
+	var Table="<table id=\"fileList\" class=\"fileList\"><tr><th><input type=\"checkbox\" onclick=\"lobsterSelectAll(this)\" /></th><th>Nazwa pliku</th><th>Rozszerzenie pliku</th><th>Udostępniony publicznie?</th><th>Link do pobrania</th><th></th></tr>";
 	for(var i=0; i<data.length; i++)
 	{
 		Table += "<tr>";
-		Table += "<td><input type=\"checkbox\" class=\"checkBoxFileList\" name=\""+data[i]["link"]+"\"id=\""+data[i]["link"]+"\" ></td>";
-		Table +="<td>"+data[i]["name"]+"</td>";
-		Table +="<td>"+data[i]["ext"]+"</td>";
-		Table +="<td>"+data[i]["isPublic"]+"</td>";
-		Table +="<td>"+data[i]["link"]+"</td>";
+		Table += "<td><input type=\"checkbox\" class=\"checkBoxFileList\" name=\""+data[i]["link"]+"\"id=\""+data[i]["link"]+"\" id=\""+data[i]["link"]+"\"id=\""+data[i]["link"]+"\" ></td>";
+		Table +="<td onclick=\"document.getElementById('"+data[i]["link"]+"').click()\">"+data[i]["name"]+"</td>";
+		Table +="<td onclick=\"document.getElementById('"+data[i]["link"]+"').click()\">"+data[i]["ext"]+"</td>";
+		Table +="<td onclick=\"document.getElementById('"+data[i]["link"]+"').click()\">"+data[i]["isPublic"]+"</td>";
+		Table +="<td onclick=\"document.getElementById('"+data[i]["link"]+"').click()\">"+data[i]["link"]+"</td>";
 		/*Table +="<td>"+data[i]["actionButton1"]+"</td>";*/
 		Table += "</tr>";
 	}
 	Table +="</table>";
 	document.getElementById("fileList").innerHTML = Table;
+}
+function lobsterSelectAll(c)
+{
+	var all = document.getElementsByClassName('checkBoxFileList');
+	for(var i = 0; i< all.length; i++)
+	{
+		all[i].checked = c.checked;	
+	}
 }
 function ajaxResponseDump(xhttp)
 {

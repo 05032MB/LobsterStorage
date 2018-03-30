@@ -17,7 +17,7 @@ switch($action)
 		$connection = mysql_connect(Settings::databaseAddr, Settings::databaseUser, Settings::databasePassword);
 		$db = mysql_select_db(Settings::databaseName, $connection);
 		
-		if($query = mysql_query("DELETE FROM files WHERE discName='$param' AND userId='$user_check'")){
+		if($query = mysql_query("DELETE FROM files WHERE discName='$param' AND userId='$userId'")){
 		unlink( Settings::uploadDirectory.$param);
 		}
 		
@@ -41,8 +41,8 @@ switch($action)
 		
 		$connection = mysql_connect(Settings::databaseAddr, Settings::databaseUser, Settings::databasePassword);
 		$db = mysql_select_db(Settings::databaseName, $connection);
-		if($limit>0 && $offset>=0)$query = mysql_query("SELECT name,type,discName,isPublic FROM files WHERE userId='$user_check' LIMIT $limit OFFSET $offset");
-		else $query = mysql_query("SELECT name,type,discName,isPublic FROM files WHERE userId='$user_check'");
+		if($limit>0 && $offset>=0)$query = mysql_query("SELECT name,type,discName,isPublic FROM files WHERE userId='$userId' LIMIT $limit OFFSET $offset");
+		else $query = mysql_query("SELECT name,type,discName,isPublic FROM files WHERE userId='$userId'");
 		
 		$table = array();
 		$i = 0;
@@ -85,7 +85,7 @@ switch($action)
 		
 		$connection = mysql_connect(Settings::databaseAddr, Settings::databaseUser, Settings::databasePassword);
 		$db = mysql_select_db(Settings::databaseName, $connection);
-		$query = mysql_query("SELECT name, discName FROM files WHERE userId='$user_check' AND discName ='$file'");
+		$query = mysql_query("SELECT name, discName FROM files WHERE userId='$userId' AND discName ='$file'");
 		
 		if($result = mysql_fetch_array($query)){
 
@@ -98,6 +98,13 @@ switch($action)
 			{
 				$zip->addFile(Settings::uploadDirectory.$result['discName'], $result['name']);
 				
+				$query = mysql_query("SELECT name, discName FROM files WHERE userId='$userId' AND discName ='$archive'");
+				if(mysql_num_rows($query) == 0)
+				{
+				//echo '[[';
+					$query = mysql_query("INSERT INTO files(discName, discType, userId, name) VALUES ('$archive', 'ZIP_TEMPORARY', '$userId', '$archive.zip')"); //create temporary resource
+				}
+				
 				$zip->close();
 			}
 		}
@@ -108,7 +115,7 @@ switch($action)
 	{
 		$connection = mysql_connect(Settings::databaseAddr, Settings::databaseUser, Settings::databasePassword);
 		$db = mysql_select_db(Settings::databaseName, $connection);
-		$query = mysql_query("SELECT name, discName FROM files WHERE userId='$user_check' AND discName ='$param'");
+		$query = mysql_query("SELECT name, discName FROM files WHERE userId='$userId' AND discName ='$param'");
 		
 		if($result = mysql_fetch_array($query)){
 			$folder = uniqid();

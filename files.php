@@ -70,11 +70,11 @@ if(empty($error_msg)){
 		$connection = mysql_connect(Settings::databaseAddr, Settings::databaseUser, Settings::databasePassword);
 		$db = mysql_select_db(Settings::databaseName, $connection);
 		
-		$user = $_SESSION['login_user'];
+		//$user = $_SESSION['login_user'];
 		$type = getExtension(basename($_FILES['file']['name']));
 		$filenam = mysql_real_escape_string(sanitize(basename( $_FILES['file']['name'])));
 		
-		$sqlcom = mysql_query("INSERT INTO files(fileId, userId, name, discName, type) VALUES (NULL, '$user','$filenam','$discName','$type')", $connection);
+		$sqlcom = mysql_query("INSERT INTO files(fileId, userId, name, discName, type) VALUES (NULL, '$userId','$filenam','$discName','$type')", $connection);
 		
 		echo mysql_error($connection);
 		
