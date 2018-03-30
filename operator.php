@@ -121,7 +121,7 @@ switch($action)
 			$folder = uniqid();
 			mkdir(Settings::downloadDirectory.$folder);
 			copy(Settings::uploadDirectory.$result['discName'], Settings::downloadDirectory.$folder."/".$result['name']);
-			echo Settings::downloadDirectory.$folder."/".$result['name'];
+			echo Settings::downloadDirectory.$folder."/".$result['name']."|".$param;
 		}
 		
 		mysql_close($connection);

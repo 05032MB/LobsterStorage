@@ -18,7 +18,7 @@ function zipWrapper(zipId)
 	executeOnSelected('pack-files-zip', nullFunc, false, "|"+zipId);
 	
 	var warframe = document.getElementById('downloader');	//dirty
-	warframe.src ="downloader.php?fileLoc="+"download/"+zipId+"/"+zipId+".zip";
+	warframe.src ="downloader.php?fileLoc="+"download/"+zipId+"/"+zipId+".zip|"+zipId;
 }
 function toggleDownloadDialog()
 {
@@ -39,6 +39,7 @@ function executeOnSelected(action, callback, reloadNeeded, additional)
       }
 	}
 	if(reloadNeeded)fileListUpdate();
+	//onEndCallback()
 }
 
 function downloadWrapper(xhttp)
