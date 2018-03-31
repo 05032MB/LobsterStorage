@@ -6,6 +6,7 @@ if(isset($_REQUEST['fileLoc']))
 	$arr = explode("|",$_REQUEST['fileLoc']);
 	
 	$loc = $arr[0];
+	$loc = Settings::downloadDirectory.$loc;
 	$dname = $arr[1];
 	//echo $loc." ".$dname;
 	//$file = $_REQUEST['fileLoc'];

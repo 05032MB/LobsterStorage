@@ -18,7 +18,7 @@ function zipWrapper(zipId)
 	executeOnSelected('pack-files-zip', nullFunc, false, "|"+zipId);
 	
 	var warframe = document.getElementById('downloader');	//dirty
-	warframe.src ="downloader.php?fileLoc="+"download/"+zipId+"/"+zipId+".zip|"+zipId;
+	warframe.src ="downloader.php?fileLoc="+zipId+"/"+zipId+".zip|"+zipId;
 }
 function toggleDownloadDialog()
 {
@@ -35,7 +35,7 @@ function executeOnSelected(action, callback, reloadNeeded, additional)
 	for(var i=0; inputElements[i]; ++i){
       if(inputElements[i].checked){
           checkedValue = inputElements[i].id;
-		  ajaxLoadSync('operator.php', "action="+action+"&param="+checkedValue+additional, callback);	//temporary needs to be fixed
+		  ajaxLoad('operator.php', "action="+action+"&param="+checkedValue+additional, callback);	//temporary needs to be fixed
       }
 	}
 	if(reloadNeeded)fileListUpdate();

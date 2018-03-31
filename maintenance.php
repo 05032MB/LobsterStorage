@@ -45,6 +45,11 @@ if(isset($_REQUEST['action']) && isset($_REQUEST['param']))
 			}
 			
 		}
+		case 'user-cleanup':
+		{
+		
+		}
 	}
+	
 }
 ?>

@@ -25,8 +25,8 @@ $row = mysql_fetch_assoc($ses_sql);
 $group =$row['ugroup'];
 $userId = $row['id'];
 
-$_SESSION['ugroup'] = $group;
-$_SESSION['userId'] = $userId;
+//$_SESSION['ugroup'] = $group;
+//$_SESSION['userId'] = $userId;
 
 mysql_close($connection); 
 }

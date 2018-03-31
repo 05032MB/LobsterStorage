@@ -52,11 +52,7 @@ switch($action)
 			$ext = $result['type'];
 			$av = $result['isPublic'];
 		
-			//$downLink = '/up/';
 			$downLink = $result['discName'];
-		
-			//$toSend = "action=prepare-download&param=";
-			//$toSend .= $result["discName"];
 			
 			$table[$i] = array();
 			$table[$i]["name"] = $fn;
@@ -121,7 +117,7 @@ switch($action)
 			$folder = uniqid();
 			mkdir(Settings::downloadDirectory.$folder);
 			copy(Settings::uploadDirectory.$result['discName'], Settings::downloadDirectory.$folder."/".$result['name']);
-			echo Settings::downloadDirectory.$folder."/".$result['name']."|".$param;
+			echo $folder."/".$result['name']."|".$param;
 		}
 		
 		mysql_close($connection);
