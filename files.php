@@ -11,31 +11,9 @@
 </head>
 <body onload="fileListUpdate()">
 <?php
-require('session.php');
-include('fileUtil.php');
-?>
-<div class="menuArea">
-<a href="login.php">Home &nbsp </a>
-<a href="files.php">Files &nbsp </a>
-Profile &nbsp
-Misc &nbsp
-
-<div class="right">
-
-<?php
-
-if(!empty($login_session)){
-echo "<a class=\"userIco\" href=\"profile.php\"> ".$login_session."&nbsp"."</a>";
-printf("<span class=\"right\"><a class=\"logout\" href =\"logout.php\" >Logout</a></span><!--span->div -->");
-
-}
-
-?>
-</div>
-</div>
-
-<?php
-
+require_once('session.php');
+require_once('fileUtil.php');
+include('menu.php');
 
 $error_msg = '';
 $success = "";
@@ -166,7 +144,7 @@ From:<input type="text" name="from" value="1" onkeyup="fileListUpdate()" id="fro
 <iframe src="downloader.php" id="downloader" style="display:none"></iframe>
 
 </div>
-<script src="files.js"></script>
+<script src="js/files.js"></script>
 </body>
 
 </html>
