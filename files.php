@@ -102,7 +102,7 @@ echo "<div class=\"alert error\">
 </div>
 
 
- <script src="alertutil.js" >
+ <script src="js/alertutil.js" >
 
  
 </script>  

@@ -79,7 +79,7 @@ include('menu.php');
 
 </div>
 
- <script src="alertutil.js" ></script>
+ <script src="js/alertutil.js" ></script>
  <div class="login">
 
  <form method="POST" action="login.php" >
