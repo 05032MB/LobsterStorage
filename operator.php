@@ -117,6 +117,10 @@ switch($action)
 			$folder = uniqid();
 			mkdir(Settings::downloadDirectory.$folder);
 			copy(Settings::uploadDirectory.$result['discName'], Settings::downloadDirectory.$folder."/".$result['name']);
+			
+			$secFile = fopen(Settings::downloadDirectory.$folder."/".$result['discName'] , "w");	//verification file to prevent exploit allowing user to download server files of the same name as uploaded file
+			fclose($secFile);
+			
 			echo $folder."/".$result['name']."|".$param;
 		}
 		

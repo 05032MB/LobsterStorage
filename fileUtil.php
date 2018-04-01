@@ -37,7 +37,10 @@ function formatBytes($bytes, $precision = 2) {
 }
 function sanitize($data)
 {
-	$result = htmlspecialchars(stripslashes($data));
+	//$pattern = '/[^a-zA-Z0-9]/u';
+	//$cleared = preg_replace($pattern, '', (string) $data);
+	$cleared  = $data;
+	$result = htmlspecialchars(stripslashes($cleared));
 	return $result;
 }
 

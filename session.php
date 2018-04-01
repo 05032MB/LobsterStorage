@@ -22,7 +22,7 @@ header('Location: login.php');
 
 $ses_sql=mysql_query("SELECT username, ugroup, id FROM login WHERE username='$user_check'", $connection);
 $row = mysql_fetch_assoc($ses_sql);
-$group =$row['ugroup'];
+$ugroup =$row['ugroup'];
 $userId = $row['id'];
 
 //$_SESSION['ugroup'] = $group;

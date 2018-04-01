@@ -10,7 +10,7 @@ if(isset($_REQUEST['action']) && isset($_REQUEST['param']))
 	{
 		case 'cleanup-download':
 		{
-		if($_SESSION['ugroup'] == Settings::admin){
+		if($ugroup == Settings::admin){
 			$dir = new DirectoryIterator(Settings::downloadDirectory);
 			$unlink_list = array();
 			foreach($dir as $item){
