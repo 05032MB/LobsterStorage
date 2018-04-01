@@ -35,7 +35,7 @@
 	
 			$query = mysql_query("select * from login where password='$password' AND username='$username'", $connection);
 			$rows = mysql_num_rows($query);
-			if ($rows == 1) {
+			if ($rows === 1) {
 				$_SESSION['login_user']=$username; // Initializing Session
 				header("location: files.php"); // Redirecting To Other Page
 			} else {
