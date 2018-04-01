@@ -49,6 +49,8 @@ $target_path = "up/";
 $discName = /*rand() . time();*/ uniqid("f", true);
 $target_file = $target_path . $discName;
 
+$filenam = mysql_real_escape_string(sanitize(basename( $_FILES['file']['name'])));
+
 if(file_exists($target_file)){
 	$error_msg='Critical system error. Retry and pray';
 }
@@ -65,14 +67,14 @@ if(empty($_FILES['file']['name'])){
 }
 if(empty($error_msg)){
 	if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-        $success = "The file ".$target_file. " has been uploaded.";
+        $success = "The file ".$filenam. " has been uploaded.";
 		
 		$connection = mysql_connect(Settings::databaseAddr, Settings::databaseUser, Settings::databasePassword);
 		$db = mysql_select_db(Settings::databaseName, $connection);
 		
 		//$user = $_SESSION['login_user'];
 		$type = getExtension(basename($_FILES['file']['name']));
-		$filenam = mysql_real_escape_string(sanitize(basename( $_FILES['file']['name'])));
+		
 		
 		$sqlcom = mysql_query("INSERT INTO files(fileId, userId, name, discName, type) VALUES (NULL, '$userId','$filenam','$discName','$type')", $connection);
 		
@@ -101,7 +103,7 @@ if(!empty($success)){
 
 echo "<div class=\"alert success\">
   <span class=\"closebtn\">&times;</span> <!--X--> 
-  <strong>Przesłano plik. </strong>".$target_file."
+  <strong>".$success."</strong>
 </div>";
 
 

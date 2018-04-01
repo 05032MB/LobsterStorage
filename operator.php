@@ -99,6 +99,8 @@ switch($action)
 				{
 				//echo '[[';
 					$query = mysql_query("INSERT INTO files(discName, discType, userId, name) VALUES ('$archive', 'ZIP_TEMPORARY', '$userId', '$archive.zip')"); //create temporary resource
+					$secFile = fopen(Settings::downloadDirectory.$archive."\\".$archive , "w");	//verification file to prevent exploit allowing user to download server files of the same name as uploaded file
+					fclose($secFile);
 				}
 				
 				$zip->close();
