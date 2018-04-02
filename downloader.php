@@ -1,13 +1,14 @@
 <?php
 require_once('session.php');
+require_once('fileUtil.php');
 
 if(isset($_REQUEST['fileLoc']))
 {
 	$arr = explode("|",$_REQUEST['fileLoc']);
 	
-	$loc = $arr[0];
+	$loc = sanitize($arr[0]);
 	$loc = Settings::downloadDirectory.$loc;	//hardcoded download/ then directory + filename sent
-	$dname = $arr[1];	//file encoded name
+	$dname = sanitize($arr[1]);	//file encoded name
 	//echo $loc." ".$dname;
 	//$file = $_REQUEST['fileLoc'];
 	

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 function getExtension($fileName)
 {	
@@ -13,15 +13,15 @@ function getFileType($fileName)
 	$extension = getExtension($fileName);
 	//echo $extension;
 	
-    $images = array('jpg', 'gif', 'png', 'bmp', 'jpeg');
+  /*  $images = array('jpg', 'gif', 'png', 'bmp', 'jpeg');
     $docs   = array('txt', 'rtf', 'doc');
-    $archives   = array('zip', 'rar', '7zip');
+    $archives   = array('zip', 'rar', '7zip');*/
 	$banned = array('exe');
      
-    if(in_array($extension, $images)) return "Images";
+   /* if(in_array($extension, $images)) return "Images";
     else if(in_array($extension, $docs)) return "Documents";
-    else if(in_array($extension, $archives)) return "Archives";
-	else if(in_array($extension, $banned)) return "NotAllowed";
+    else if(in_array($extension, $archives)) return "Archives";*/
+	 if(in_array($extension, $banned)) return "NotAllowed";
     return "Unknown";
 }
 function formatBytes($bytes, $precision = 2) { 

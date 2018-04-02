@@ -20,6 +20,10 @@ $success = "";
 
 $size_limit = 500000;
 
+$path = '/';
+if(isset($_GET['path']))$path = $_GET['path'];
+if(empty($path))$path = '/';
+
 
 if(isset($_FILES['file']))
 {
@@ -53,8 +57,7 @@ if(empty($error_msg)){
 		//$user = $_SESSION['login_user'];
 		$type = getExtension(basename($_FILES['file']['name']));
 		
-		
-		$sqlcom = mysql_query("INSERT INTO files(fileId, userId, name, discName, type) VALUES (NULL, '$userId','$filenam','$discName','$type')", $connection);
+		$sqlcom = mysql_query("INSERT INTO files(fileId, userId, name, discName, type, virtualPath) VALUES (NULL, '$userId','$filenam','$discName','$type', '$path')", $connection);
 		
 		echo mysql_error($connection);
 		
@@ -113,7 +116,7 @@ echo "<div class=\"alert error\">
     <fieldset>
 
         <legend>Add a new file to the storage</legend>
-        <form method="post" action="files.php" enctype="multipart/form-data">
+        <form method="post" action="files.php?path=<?php echo $path?>" enctype="multipart/form-data">
         <p>
 		<label class="uploadFile">
         <input type="file" name="file" />
@@ -135,19 +138,24 @@ echo "<div class=\"alert error\">
 <button class="download" onclick="executeOnSelected('prepare-download', downloadWrapper, false)">Download</button>
 <button class="upload" onclick="toggleDownloadDialog()">Upload</button>
 <button class="zip" onclick="zipWrapper('<?php echo uniqid('zip') ?>')" id="zip">Zip</button>
+
 <div id="div_path">
-<input type="text" name="path" id="path" />
+<input type="text" name="path" id="path" value="<?php echo $path?>" onkeyup="fileListUpdate()"/>
 </div>
+
 <div id="nav">
 From:<input type="text" name="from" value="1" onkeyup="fileListUpdate()" id="from" /> To: <input type="text" onkeyup="fileListUpdate()" name="lim" value="10" id="lim" /> 
 <button class="lor" id="moveLeft" onclick="incLeft()"> &lt </button><button id="moveRight" onclick="incRight()" class="lor"> &gt </button><input type="text" class="smallInput" id="moveSize" value="10" />
 </div>
-<div id="fileList"></div>
+
+<div id="fileList">
+</div>
 
 <iframe src="downloader.php" id="downloader" style="display:none"></iframe>
 
 </div>
 <script src="js/files.js"></script>
+<script src="js/ajax.js"></script>
 </body>
 
 </html>

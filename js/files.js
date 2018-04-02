@@ -7,10 +7,12 @@ function nullFunc()
 }
 function fileListUpdate()
 {
+	dir = document.getElementById('path').value;
+	if(dir === undefined)dir = '/';
 	var from = document.getElementById('from').value;
 	var to = document.getElementById('lim').value;
 	if( from !='' && to !='' && parseInt(from,10) <= parseInt(to,10)){
-		ajaxLoad('operator.php', "action=fetch-files&param="+parseInt(from,10)+"|"+parseInt(to,10), buildFileTable);
+		ajaxLoad('operator.php', "action=fetch-files&param="+parseInt(from,10)+"|"+parseInt(to,10)+"|"+dir, buildFileTable);
 	}
 }
 function zipWrapper(zipId)
@@ -146,42 +148,4 @@ function lobsterSelectAll(c)
 function ajaxResponseDump(xhttp)
 {
 	alert(xhttp.responseText);
-}
-function ajaxLoad(file, data ,callback)
-{
-	if(window.XMLHttpRequest){
-			xhttp = new XMLHttpRequest();
-	}else{
-			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	
-	xhttp.onreadystatechange = function(){
-		if(this.readyState == 4 && this.status == 200){
-			callback(this);
-		}
-	}
-	
-	xhttp.open("POST", file, true);
-	xhttp.setRequestHeader("Content-type", 'application/x-www-form-urlencoded');
-	xhttp.send(data);
-
-}
-function ajaxLoadSync(file, data ,callback)
-{
-	if(window.XMLHttpRequest){
-			xhttp = new XMLHttpRequest();
-	}else{
-			xhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	
-	xhttp.onreadystatechange = function(){
-		if(this.readyState == 4 && this.status == 200){
-			callback(this);
-		}
-	}
-	
-	xhttp.open("POST", file, false);
-	xhttp.setRequestHeader("Content-type", 'application/x-www-form-urlencoded');
-	xhttp.send(data);
-
 }

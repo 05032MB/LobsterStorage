@@ -1,5 +1,6 @@
 <?php
 require_once('session.php');
+require_once('fileUtil.php');
 
 //$login_session
 
@@ -33,16 +34,17 @@ switch($action)
 		header("Content-type: application/json");
 		
 		$split = explode("|", $param);
-		$offset = intval($split[0]);
-		$limit = intval($split[1]) - $offset+1;
+		$offset = intval(sanitize($split[0]));
+		$limit = intval(sanitize($split[1])) - sanitize($offset)+1;
+		$dir = (string) sanitize($split[2]);
 		$offset--;
 		
 		//echo $offset.$limit;
 		
 		$connection = mysql_connect(Settings::databaseAddr, Settings::databaseUser, Settings::databasePassword);
 		$db = mysql_select_db(Settings::databaseName, $connection);
-		if($limit>0 && $offset>=0)$query = mysql_query("SELECT name,type,discName,isPublic FROM files WHERE userId='$userId' LIMIT $limit OFFSET $offset");
-		else $query = mysql_query("SELECT name,type,discName,isPublic FROM files WHERE userId='$userId'");
+		if($limit>0 && $offset>=0)$query = mysql_query("SELECT name,type,discName,isPublic FROM files WHERE userId='$userId' AND virtualPath='$dir' LIMIT $limit OFFSET $offset");
+		else $query = mysql_query("SELECT name,type,discName,isPublic FROM files WHERE userId='$userId' AND virtualPath='$dir'");
 		
 		$table = array();
 		$i = 0;
@@ -128,8 +130,10 @@ switch($action)
 		
 		mysql_close($connection);
 	}
-
+	case 'create-folder':
+	{
 	
+	}
 
 }
 
