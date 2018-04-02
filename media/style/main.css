@@ -171,6 +171,12 @@ button:hover, input[type=button]:hover, input[type=submit]:hover{
 	
 	border-top: 2px #00802b;
 }
+input[type=text]#path
+{
+	padding: 4px 4px;
+	width: 30%;
+	margin-left: 3px;
+}
 input[type=text]#lim, input[type=text]#from, input[type=text].smallInput
 {
 	padding: 4px 4px;

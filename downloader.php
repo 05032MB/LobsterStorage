@@ -33,6 +33,10 @@ if(isset($_REQUEST['fileLoc']))
 				ob_clean();
 				flush();
 				readfile($loc);
+				
+				@unlink($loc);	//clean-up
+				@unlink($filePath.$dname);
+				@rmdir($filePath);
 				//exit;
 			}
 			if($result['discType']=='ZIP_TEMPORARY'){	//if files 'zipped' to download clear entry from table

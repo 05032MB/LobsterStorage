@@ -135,6 +135,9 @@ echo "<div class=\"alert error\">
 <button class="download" onclick="executeOnSelected('prepare-download', downloadWrapper, false)">Download</button>
 <button class="upload" onclick="toggleDownloadDialog()">Upload</button>
 <button class="zip" onclick="zipWrapper('<?php echo uniqid('zip') ?>')" id="zip">Zip</button>
+<div id="div_path">
+<input type="text" name="path" id="path" />
+</div>
 <div id="nav">
 From:<input type="text" name="from" value="1" onkeyup="fileListUpdate()" id="from" /> To: <input type="text" onkeyup="fileListUpdate()" name="lim" value="10" id="lim" /> 
 <button class="lor" id="moveLeft" onclick="incLeft()"> &lt </button><button id="moveRight" onclick="incRight()" class="lor"> &gt </button><input type="text" class="smallInput" id="moveSize" value="10" />
